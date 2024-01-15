@@ -1,10 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 
-const price1 = ref(60)
-const price2 = ref(70)
 const menus = ['Home', 'Shop', 'About']
 const products = ['역삼동원룸', '천호동원룸', '마포구원룸']
+const prices = [50, 70, 90]
+const reports = ref([0, 0, 0])
+
+function increase(idx) {
+  this.reports[idx]++
+}
 </script>
 
 <template>
@@ -12,9 +16,10 @@ const products = ['역삼동원룸', '천호동원룸', '마포구원룸']
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
 
-  <div v-for="product in products" :key="product">
+  <div v-for="(product, i) in products" :key="i">
     <h4>{{ product }}</h4>
-    <p>50 만원</p>
+    <p>{{ prices[i] }} 만원</p>
+    <button @click="increase(i)">허위매물신고</button> <span>신고수: {{ reports[i] }}</span>
   </div>
 </template>
 
