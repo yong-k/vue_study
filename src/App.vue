@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import { oneroomDatas } from './assets/oneroom.js'
 
+const onerooms = oneroomDatas
 const menus = ['Home', 'Shop', 'About']
 const products = ['역삼동원룸', '천호동원룸', '마포구원룸']
 const prices = [50, 70, 90]
@@ -25,11 +27,10 @@ function increase(idx) {
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
 
-  <div v-for="(product, i) in products" :key="i">
-    <img :src="`/img/room${i}.jpg`" class="room-img">
-    <h4 @click="isModalOpen = true">{{ product }}</h4>
-    <p>{{ prices[i] }} 만원</p>
-    <button @click="increase(i)">허위매물신고</button> <span>신고수: {{ reports[i] }}</span>
+  <div v-for="(oneroom, i) in onerooms" :key="i">
+    <img :src="oneroom.image" class="room-img">
+    <h4 @click="isModalOpen = true">{{ oneroom.title }}</h4>
+    <p>{{ oneroom.price }} 원</p>
   </div>
 </template>
 
