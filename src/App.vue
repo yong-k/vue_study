@@ -17,6 +17,7 @@ function increase(idx) {
   </div>
 
   <div v-for="(product, i) in products" :key="i">
+    <img :src="`/img/room${i}.jpg`" class="room-img">
     <h4>{{ product }}</h4>
     <p>{{ prices[i] }} 만원</p>
     <button @click="increase(i)">허위매물신고</button> <span>신고수: {{ reports[i] }}</span>
@@ -42,4 +43,9 @@ function increase(idx) {
   color: white;
   padding: 10px;
 }
+
+.room-img {
+  width: 100%;
+  margin-top: 40px;
+} 
 </style>
