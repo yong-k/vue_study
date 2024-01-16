@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { oneroomDatas } from './assets/oneroom.js'
+import Modal from './Modal.vue'
+import Discount from './Discount.vue'
 
 const onerooms = oneroomDatas
 const menus = ['Home', 'Shop', 'About']
@@ -9,19 +11,13 @@ const isModalOpen = ref(false)
 </script>
 
 <template>
-  <div class="black-bg" v-if="isModalOpen">
-    <div class="white-bg">
-      <h4>{{ onerooms[clickedRoomNumber].title }}</h4>
-      <img :src="onerooms[clickedRoomNumber].image" style="width:100%">
-      <p>가격: {{ onerooms[clickedRoomNumber].price }} 원</p>
-      <p>{{ onerooms[clickedRoomNumber].content }}</p>
-      <button @click="isModalOpen = false">닫기</button>
-    </div>
-  </div>
+  <Modal />
 
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
+
+  <Discount />
 
   <div v-for="(oneroom, i) in onerooms" :key="i">
     <img :src="oneroom.image" class="room-img">
