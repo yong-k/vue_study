@@ -4,21 +4,17 @@ import { oneroomDatas } from './assets/oneroom.js'
 
 const onerooms = oneroomDatas
 const menus = ['Home', 'Shop', 'About']
-const products = ['역삼동원룸', '천호동원룸', '마포구원룸']
-const prices = [50, 70, 90]
-const reports = ref([0, 0, 0])
+const clickedRoomNumber = ref(0)
 const isModalOpen = ref(false)
-
-function increase(idx) {
-  this.reports[idx]++
-}
 </script>
 
 <template>
   <div class="black-bg" v-if="isModalOpen">
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
+      <h4>{{ onerooms[clickedRoomNumber].title }}</h4>
+      <img :src="onerooms[clickedRoomNumber].image" style="width:100%">
+      <p>가격: {{ onerooms[clickedRoomNumber].price }} 원</p>
+      <p>{{ onerooms[clickedRoomNumber].content }}</p>
       <button @click="isModalOpen = false">닫기</button>
     </div>
   </div>
@@ -29,7 +25,7 @@ function increase(idx) {
 
   <div v-for="(oneroom, i) in onerooms" :key="i">
     <img :src="oneroom.image" class="room-img">
-    <h4 @click="isModalOpen = true">{{ oneroom.title }}</h4>
+    <h4 @click="isModalOpen = true; clickedRoomNumber = i">{{ oneroom.title }}</h4>
     <p>{{ oneroom.price }} 원</p>
   </div>
 </template>
